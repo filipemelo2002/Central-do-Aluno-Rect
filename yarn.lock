@@ -1509,7 +1509,7 @@ babel-plugin-syntax-trailing-function-commas@^7.0.0-beta.0:
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-trailing-function-commas/-/babel-plugin-syntax-trailing-function-commas-7.0.0-beta.0.tgz#aa213c1435e2bffeb6fca842287ef534ad05d5cf"
   integrity sha512-Xj9XuRuz3nTSbaTXWv3itLOcxyF4oPD8douBBmj7U9BBC6nEBYfyOJYQMf/8PJAFotC62UY5dFfIGEPr7WswzQ==
 
-babel-preset-expo@~8.0.0:
+babel-preset-expo@^8.0.0, babel-preset-expo@~8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/babel-preset-expo/-/babel-preset-expo-8.0.0.tgz#08c042363189f2d871381f0d0dbf9644e9f67aea"
   integrity sha512-40UCIE4E+9Xx5K+oEidFHML2+j/WE/ikcC7+3ndWx74MtdmRAtnGecboKRiGUK/vMrHzXIcWPP6/SOnE7zQVgQ==
@@ -2530,7 +2530,7 @@ expo-web-browser@~8.0.0:
   resolved "https://registry.yarnpkg.com/expo-web-browser/-/expo-web-browser-8.0.0.tgz#8a4451c744c115569a4c810dac8851f219a21c72"
   integrity sha512-7/rXUajycSjEF4Zd4tWm8+zP9/zJg8UWj575w2AeGI7RbOwUjqzQd1CFRzQBJkHflrEaTOXJbFHXxjJXdJaL1g==
 
-expo@~36.0.0:
+expo@^36.0.0:
   version "36.0.2"
   resolved "https://registry.yarnpkg.com/expo/-/expo-36.0.2.tgz#17e5470c056f8615ebdd6819087af6a1032cf1ad"
   integrity sha512-A0HkOBr6PkHUCcPmmTRmZQHE68EYhWDevFHAiv7fSZxNACmTq9arrSoON+UiPtGQEIV5OyV+MN/joHTJMduTkA==
@@ -4701,7 +4701,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -4760,7 +4760,7 @@ react-devtools-core@^3.6.3:
     shell-quote "^1.6.1"
     ws "^3.3.1"
 
-react-dom@~16.9.0:
+react-dom@16.9.0:
   version "16.9.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.9.0.tgz#5e65527a5e26f22ae3701131bcccaee9fb0d3962"
   integrity sha512-YFT2rxO9hM70ewk9jq0y6sQk8cL02xm4+IzYBz75CQGlClQQ1Bxq0nhHF6OtSbit+AIahujJgb/CPRibFkMNJQ==
@@ -4790,12 +4790,6 @@ react-native-linear-gradient@~2.5.6:
   version "2.5.6"
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.5.6.tgz#96215cbc5ec7a01247a20890888aa75b834d44a0"
   integrity sha512-HDwEaXcQIuXXCV70O+bK1rizFong3wj+5Q/jSyifKFLg0VWF95xh8XQgfzXwtq0NggL9vNjPKXa016KuFu+VFg==
-
-react-native-photo-view@shoutem/react-native-photo-view#0ffa1481f6b6cb8663cb291b7db1d6644440584d:
-  version "1.5.2"
-  resolved "https://codeload.github.com/shoutem/react-native-photo-view/tar.gz/0ffa1481f6b6cb8663cb291b7db1d6644440584d"
-  dependencies:
-    prop-types "^15.5.10"
 
 react-native-reanimated@~1.4.0:
   version "1.4.0"
@@ -4840,7 +4834,7 @@ react-native-view-shot@3.0.2:
   resolved "https://registry.yarnpkg.com/react-native-view-shot/-/react-native-view-shot-3.0.2.tgz#daccaec5b8038a680b17533ff7e72876e68c7d0d"
   integrity sha512-JZOkGo2jzSX2b7N6N2uDr0wQjSz+QmBtY8jzeo0XJY6bLOfaY5nmWyYxDmDRoSpKiFkGTCkyhUqNnjo6lXOtEw==
 
-react-native-web@~0.11.7:
+react-native-web@^0.11.7:
   version "0.11.7"
   resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.11.7.tgz#d173d5a9b58db23b6d442c4bc4c81e9939adac23"
   integrity sha512-w1KAxX2FYLS2GAi3w3BnEZg/IUu7FdgHnLmFKHplRnHMV3u1OPB2EVA7ndNdfu7ds4Rn2OZjSXoNh6F61g3gkA==
@@ -4856,17 +4850,17 @@ react-native-web@~0.11.7:
     prop-types "^15.6.0"
     react-timer-mixin "^0.13.4"
 
-react-native-webview@^7.5.0:
-  version "7.6.0"
-  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-7.6.0.tgz#6bae76430200be5e5ead7d986af2fa341b650186"
-  integrity sha512-IQWtIpCTYb4dTshAJO3hMM9Ms5T6KRpk6qWqgBTGMdmgeEvSxWz9l7Og1ALhb7T7NoAnPy8w/dQmD9LlbGGs5g==
+react-native-webview@7.4.3:
+  version "7.4.3"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-7.4.3.tgz#e00e92e17f7389d84d09f5900652501ff2665915"
+  integrity sha512-4n72B2D7n1xOQSoCSD1qk9D7JksyT4d6nk8QG9guZKZn3KXQL5EejwE2yhh1TxZRQpr+OD3a96rb+rA/UEnvrQ==
   dependencies:
     escape-string-regexp "2.0.0"
     invariant "2.2.4"
 
-"react-native@https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz":
+"react-native@https://github.com/expo/react-native/archive/sdk-36.0.1.tar.gz":
   version "0.61.4"
-  resolved "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz#fc6d760c9395a1046632b17699718e40b91ea747"
+  resolved "https://github.com/expo/react-native/archive/sdk-36.0.1.tar.gz#d98e5d0a80cc264b0d900a750a20d0ee27aa3f14"
   dependencies:
     "@babel/runtime" "^7.0.0"
     "@react-native-community/cli" "^3.0.0-alpha.1"
@@ -4916,7 +4910,7 @@ react-timer-mixin@^0.13.4:
   resolved "https://registry.yarnpkg.com/react-timer-mixin/-/react-timer-mixin-0.13.4.tgz#75a00c3c94c13abe29b43d63b4c65a88fc8264d3"
   integrity sha512-4+ow23tp/Tv7hBM5Az5/Be/eKKF7DIvJ09voz5LyHGQaqqz9WV8YMs31eFvcYQs7d451LSg7kDJV70XYN/Ug/Q==
 
-react@~16.9.0:
+react@16.9.0:
   version "16.9.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.9.0.tgz#40ba2f9af13bc1a38d75dbf2f4359a5185c4f7aa"
   integrity sha512-+7LQnFBwkiw+BobzOF6N//BdoNw0ouwmSJTEm9cglOOmsg/TMiFHZLe2sEoN5M7LgJTj9oHH0gxklfnQe66S1w==
