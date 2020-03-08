@@ -81,7 +81,7 @@ export default function Login({ navigation }) {
     async function verifyUser() {
       const user = await getData("user");
       if (user) {
-        navigation.navigate("Home");
+        navigation.navigate("Navigation");
       }
     }
     verifyUser();
