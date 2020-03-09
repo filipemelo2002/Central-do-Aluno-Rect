@@ -7,6 +7,9 @@ const Tab = createMaterialBottomTabNavigator();
 import Icon from "react-native-vector-icons/AntDesign";
 
 import Notas from "./Notas";
+import Frequencia from "./Frequencia";
+import Horario from "./Horario";
+import Estatisticas from "./Estatisticas";
 export default function Navigation() {
   return (
     <NavigationContainer>
@@ -26,7 +29,7 @@ export default function Navigation() {
           }}
         />
         <Tab.Screen
-          component={Notas}
+          component={Frequencia}
           name="Frequência"
           options={{
             tabBarLabel: "Frequência",
@@ -36,7 +39,7 @@ export default function Navigation() {
           }}
         />
         <Tab.Screen
-          component={Notas}
+          component={Horario}
           name="Horário"
           options={{
             tabBarLabel: "Horário",
@@ -46,7 +49,7 @@ export default function Navigation() {
           }}
         />
         <Tab.Screen
-          component={Notas}
+          component={Estatisticas}
           name="Estatísticas"
           options={{
             tabBarLabel: "Estatísticas",
