@@ -1,17 +1,10 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
-
+import { SafeAreaView } from "react-native";
+import Toolbar from "../utils/Toolbar";
 export default function Notas() {
   return (
-    <View style={styles.container}>
-      <Text>Notas</Text>
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <Toolbar title="Notas" />
+    </SafeAreaView>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
