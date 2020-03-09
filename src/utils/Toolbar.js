@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   toolBarTitle: {
     color: "#fff",
     fontWeight: "bold",
+    fontFamily: "Roboto",
     fontSize: 20
   }
 });
