@@ -60,7 +60,7 @@ export default function Login({ navigation }) {
         });
         const saved = await storeData("user", JSON.stringify(response.data));
         if (saved) {
-          console.log("saved new user");
+          navigation.navigate("Main");
         }
       } catch (error) {
         setBorderColor("#c20a0a");
@@ -81,7 +81,7 @@ export default function Login({ navigation }) {
     async function verifyUser() {
       const user = await getData("user");
       if (user) {
-        navigation.navigate("Navigation");
+        navigation.navigate("Main");
       }
     }
     verifyUser();
