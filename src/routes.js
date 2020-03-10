@@ -1,11 +1,14 @@
 import { createSwitchNavigator, createAppContainer } from "react-navigation";
 
 import Login from "./pages/Login";
-import Navigation from "./pages/Navigation";
+import Main from "./pages/Main";
 const Routes = createAppContainer(
-  createSwitchNavigator({
-    Login,
-    Navigation
-  })
+  createSwitchNavigator(
+    {
+      Login,
+      Main
+    },
+    { unmountInactiveRoutes: true }
+  )
 );
 export default Routes;
