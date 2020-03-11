@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Picker, StyleSheet, Dimensions } from "react-native";
+import { View, Picker, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 
 export default function MyPicker({ boletins, changedState, stateValue }) {
@@ -21,13 +21,16 @@ export default function MyPicker({ boletins, changedState, stateValue }) {
 
 const styles = StyleSheet.create({
   pickerRoot: {
-    width: Dimensions.get("screen").width,
     height: 60,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "space-between",
     flexDirection: "row",
-    padding: 15
+    padding: 15,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0
   },
   picker: {
     flex: 1
