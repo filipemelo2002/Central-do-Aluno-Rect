@@ -20,7 +20,7 @@ import {
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import api from "../utils/api";
-import { getData, storeData } from "../utils/AsyncStorage";
+import HandleStorage from "../utils/AsyncStorage";
 
 import Illustration from "./assets/illustration.png";
 
@@ -39,6 +39,8 @@ export default function Login({ navigation }) {
   const [message, setMessage] = useState("");
   const [hiddenPass, setPassHidden] = useState(true);
   const [changeIcon, setIcon] = useState("lock");
+
+  const Storage = new HandleStorage();
   function onPressPad() {
     if (hiddenPass) {
       setPassHidden(false);
@@ -58,7 +60,7 @@ export default function Login({ navigation }) {
           email,
           senha
         });
-        const saved = await storeData("user", JSON.stringify(response.data));
+        const saved = await Storage.setUser(response.data);
         if (saved) {
           navigation.navigate("Main");
         }
@@ -79,7 +81,7 @@ export default function Login({ navigation }) {
 
   useEffect(() => {
     async function verifyUser() {
-      const user = await getData("user");
+      const user = await Storage.getUser();
       if (user) {
         navigation.navigate("Main");
       }
