@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native";
-import Toolbar from "../utils/Toolbar";
 
 import Icon from "react-native-vector-icons/AntDesign";
 import MyPicker from "../utils/MyPicker";
@@ -38,15 +37,17 @@ export default function Notas() {
         }
       );
       setNotas(response.data);
-      console.log(notas);
     }
     if (user) {
       getNotas();
     }
+    //console.log(selectedBoletin);
   }, [selectedBoletin]);
+  useEffect(() => {
+    console.log(notas);
+  }, [notas]);
   return (
     <SafeAreaView style={{ flex: 1, alignItems: "center" }}>
-      <Toolbar title="Notas" />
       <MyPicker
         boletins={boletins}
         changedState={setSelectedBoletin}
