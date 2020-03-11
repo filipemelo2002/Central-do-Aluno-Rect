@@ -9,7 +9,7 @@ export default function MyPicker({ boletins, changedState, stateValue }) {
       <Picker
         style={styles.picker}
         selectedValue={stateValue}
-        onValueChange={value => changedState(value)}
+        onValueChange={(value, index) => changedState(boletins[index])}
       >
         {boletins.map((boletin, index) => (
           <Picker.Item label={boletin.label} value={boletin} key={index} />
@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
   pickerRoot: {
     width: Dimensions.get("screen").width,
     height: 60,
-    marginTop: 90,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "space-between",
