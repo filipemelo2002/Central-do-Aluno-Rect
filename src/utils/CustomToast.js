@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 export const fadeTrigger = opacity => {
   return Animated.timing(opacity, {
     toValue: 1,
-    duration: 1000
+    duration: 500
   });
 };
 
@@ -28,7 +28,7 @@ export const fadeOut = opacity => {
   return Animated.timing(opacity, {
     toValue: 0,
     duration: 1000,
-    delay: 1000
+    delay: 1500
   });
 };
 export const timer = (fadeIn, fadeOut) => {
