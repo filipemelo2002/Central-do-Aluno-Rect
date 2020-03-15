@@ -27,10 +27,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     padding: 15,
-    position: "absolute",
-    top: 0,
     left: 0,
-    right: 0
+    right: 0,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3
   },
   picker: {
     flex: 1
