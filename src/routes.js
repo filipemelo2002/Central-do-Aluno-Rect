@@ -7,6 +7,7 @@ const Stack = createStackNavigator();
 
 import Login from "./pages/Login";
 import Main from "./pages/Main";
+
 const Routes = () => (
   <NavigationContainer>
     <Stack.Navigator>
@@ -27,6 +28,7 @@ const Routes = () => (
             height: 90
           },
           headerLeft: null,
+
           headerTitleAlign: "center",
           headerTintColor: "#fff",
           headerTitleStyle: {
