@@ -5,12 +5,26 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 const Tab = createMaterialTopTabNavigator();
 
 import Icon from "react-native-vector-icons/AntDesign";
-
+import HandleStorage from "../utils/AsyncStorage";
 import Notas from "./Notas";
 import Frequencia from "./Frequencia";
 import Horario from "./Horario";
 import Estatisticas from "./Estatisticas";
-export default function Main() {
+export default function Main({ navigation }) {
+  navigation.setOptions({
+    headerRight: () => (
+      <Icon
+        name="logout"
+        size={25}
+        color="#fff"
+        style={{ marginRight: 15 }}
+        onPress={async () => {
+          navigation.navigate("Login");
+          await new HandleStorage().removeUser();
+        }}
+      />
+    )
+  });
   return (
     <Tab.Navigator
       barStyle={{ backgroundColor: "#fff" }}
