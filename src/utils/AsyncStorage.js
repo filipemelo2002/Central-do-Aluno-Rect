@@ -22,7 +22,14 @@ class HandleStorage {
   async getUser() {
     return await this.getData("user");
   }
-
+  async removeUser() {
+    try {
+      await AsyncStorage.removeItem("user");
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
   async storeData(key, value) {
     try {
       await AsyncStorage.setItem(key, value);
