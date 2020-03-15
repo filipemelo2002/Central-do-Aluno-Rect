@@ -62,6 +62,8 @@ export default function Login({ navigation }) {
         });
         const saved = await Storage.setUser(response.data);
         if (saved) {
+          setEmail("");
+          setSenha("");
           navigation.navigate("Main");
         }
       } catch (error) {
