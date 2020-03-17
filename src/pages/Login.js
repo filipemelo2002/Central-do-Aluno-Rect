@@ -24,7 +24,11 @@ import HandleStorage from "../utils/AsyncStorage";
 
 import Illustration from "./assets/illustration.png";
 
-import CustomToast, { timer, fadeTrigger, fadeOut } from "../utils/CustomToast";
+import CustomToast, {
+  timer,
+  fadeTrigger,
+  fadeOut
+} from "./components/CustomToast";
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
