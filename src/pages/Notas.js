@@ -3,9 +3,10 @@ import { SafeAreaView, View } from "react-native";
 import Lottie from "lottie-react-native";
 
 import NotasList from "./components/NotasList";
-import MyPicker from "../utils/MyPicker";
+import MyPicker from "./components/MyPicker";
 import HandleStorage from "../utils/AsyncStorage";
-import api from "../utils/api";
+import ApiHandler from "../utils/api";
+
 export default function Notas() {
   const [boletins, setBoletins] = useState([]);
   const [notas, setNotas] = useState({});
@@ -17,18 +18,7 @@ export default function Notas() {
   useEffect(() => {
     async function loadBoletins() {
       const { userToken } = await Storage.getUser();
-      let data = [];
-      try {
-        const response = await api.get("/boletins", {
-          headers: {
-            userToken
-          }
-        });
-        data = response.data;
-        Storage.setBoletins(response.data);
-      } catch (err) {
-        data = await Storage.getBoletins();
-      }
+      const data = await Storage.getBoletins();
       setBoletins(data);
       setUser(userToken);
     }
@@ -38,21 +28,9 @@ export default function Notas() {
   useEffect(() => {
     async function getNotas() {
       const { boletimId, ano } = selectedBoletin;
-      let data = {};
-      try {
-        const response = await api.get(
-          `/boletins/view?boletimId=${boletimId}&ano=${ano}`,
-          {
-            headers: {
-              userToken: user
-            }
-          }
-        );
-        data = response.data;
-        await Storage.setNotas(boletimId, data);
-      } catch (err) {
-        data = await Storage.getNotas(boletimId);
-      }
+      const api = new ApiHandler(user);
+      const data = await api.getNotas(boletimId, ano);
+
       setVisible("none");
       setListLoaded("flex");
       setNotas(data);
