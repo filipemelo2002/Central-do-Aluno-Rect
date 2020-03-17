@@ -1,6 +1,15 @@
 import { AsyncStorage } from "react-native";
 
 class HandleStorage {
+  async setFrequencia(boletimId, frequencia) {
+    const id = `frequencia-${boletimId}`;
+    return await this.storeData(id, JSON.stringify(frequencia));
+  }
+  async getFrequencia(boletimId) {
+    const id = `frequencia-${boletimId}`;
+    const frequencia = await this.getData(id);
+    return frequencia ? frequencia : {};
+  }
   async setNotas(boletimId, notas) {
     const id = `notas-${boletimId}`;
     return await this.storeData(id, JSON.stringify(notas));
