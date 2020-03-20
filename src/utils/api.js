@@ -28,7 +28,6 @@ class ApiHandler {
   }
 
   async getNotas(boletimId, ano) {
-    let data = {};
     try {
       const response = await api.get(
         `/boletins/view?boletimId=${boletimId}&ano=${ano}`,
@@ -38,7 +37,7 @@ class ApiHandler {
           }
         }
       );
-      await this.Storage.setNotas(boletimId, data);
+      await this.Storage.setNotas(boletimId, response.data);
       return response.data;
     } catch (err) {
       return await this.Storage.getNotas(boletimId);
