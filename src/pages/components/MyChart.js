@@ -66,23 +66,13 @@ export default function MyChart({
     </View>
   );
 }
-//                             
-const colour = [
-  '62, 32, 109',
-  '0,0,0',
-  '0, 110, 189',
-  '189, 0, 66',
-  '22, 153, 12 ',
-  '232, 166, 0',
-  '232, 66, 0 ',
-  '0, 196, 85'
-];
+
 const chartConfig = {
   backgroundColor: "#fff",
   backgroundGradientFrom: "#fff",
   backgroundGradientTo: "#fff",
   decimalPlaces: 2, // optional, defaults to 2dp
-  color: (opacity = 1) => `rgba(${colour[Math.floor(Math.random() * colour.length)]}, ${opacity})`,
+  color: (opacity = 1) => `rgba(66, 72, 116, ${opacity})`,
   labelColor: (opacity = 1) => `rgba(0, 0, 0 , ${opacity})`,
   style: {
     borderRadius: 5
@@ -104,7 +94,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: "100",
     color: "#3c3c3c",
-    fontWeight: "bold",
+    fontWeight: "bold"
   },
   chartStyles: {
     marginVertical: 8,
