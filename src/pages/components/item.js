@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 // import { Container } from './styles';
-export default function Item({
+function ItemList({
   materia,
   nota_p1,
   nota_p2,
@@ -163,3 +163,5 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   }
 });
+
+export default memo(ItemList);
