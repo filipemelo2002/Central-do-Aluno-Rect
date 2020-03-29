@@ -1,9 +1,7 @@
 import axios from "axios";
 
 import HandleStorage from "../utils/AsyncStorage";
-const api = axios.create({
-  baseURL: "https://centraldoaluno.herokuapp.com"
-});
+
 class ApiHandler {
   constructor(userToken) {
     this.api = axios.create({
@@ -15,7 +13,7 @@ class ApiHandler {
 
   async getBoletins() {
     try {
-      const response = await api.get("/boletins", {
+      const response = await this.api.get("/boletins", {
         headers: {
           userToken: this.userToken
         }
@@ -29,7 +27,7 @@ class ApiHandler {
 
   async getNotas(boletimId, ano) {
     try {
-      const response = await api.get(
+      const response = await this.api.get(
         `/boletins/view?boletimId=${boletimId}&ano=${ano}`,
         {
           headers: {
@@ -46,7 +44,7 @@ class ApiHandler {
 
   async getFrequencia(boletimId, ano) {
     try {
-      const response = await api.get(
+      const response = await this.api.get(
         `/faltas?boletimId=${boletimId}&ano=${ano}`,
         {
           headers: {
@@ -57,6 +55,7 @@ class ApiHandler {
       await this.Storage.setFrequencia(boletimId, response.data);
       return response.data;
     } catch (err) {
+      console.log(err);
       return await this.Storage.getFrequencia(boletimId);
     }
   }
