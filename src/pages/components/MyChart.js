@@ -6,35 +6,6 @@ import { BarChart } from "react-native-chart-kit";
 import { Dimensions } from "react-native";
 const screenWidth = Dimensions.get("window").width;
 
-export const sanitizePercent = frequencia => {
-  const arrayPercent = [];
-  arrayPercent.push(frequencia.percent.perc1);
-  arrayPercent.push(frequencia.percent.perc2);
-  arrayPercent.push(frequencia.percent.perc3);
-  arrayPercent.push(frequencia.percent.perc4);
-
-  return arrayPercent;
-};
-
-export const sanitizeAmount = frequencia => {
-  const sumFrequencias = [];
-  const f1 = [];
-  const f2 = [];
-  const f3 = [];
-  const f4 = [];
-  frequencia.details.forEach(materia => {
-    f1.push(materia.fnj_p1 + materia.fj_p1);
-    f2.push(materia.fnj_p2 + materia.fj_p2);
-    f3.push(materia.fnj_p3 + materia.fj_p3);
-    f4.push(materia.fnj_p4 + materia.fj_p4);
-  });
-  sumFrequencias.push(f1.reduce((prev, next) => prev + next));
-  sumFrequencias.push(f2.reduce((prev, next) => prev + next));
-  sumFrequencias.push(f3.reduce((prev, next) => prev + next));
-  sumFrequencias.push(f4.reduce((prev, next) => prev + next));
-  sumFrequencias.push(sumFrequencias.reduce((prev, next) => prev + next));
-  return sumFrequencias;
-};
 
 export default function MyChart({
   labels = ["1º Bimestre", "2º Bimestre", "3º Bimestre", "4º Bimestre"],

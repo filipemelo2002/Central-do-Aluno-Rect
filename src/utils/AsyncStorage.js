@@ -1,6 +1,17 @@
 import { AsyncStorage } from "react-native";
 
 class HandleStorage {
+  async setHorario(horario) {
+    const id = "horario";
+    return await this.storeData(id, JSON.stringify(horario));
+  }
+
+  async getHorario() {
+    const id = "horario";
+    const horario = await this.getData(id);
+    return horario ? horario : [];
+  }
+
   async setFrequencia(boletimId, frequencia) {
     const id = `frequencia-${boletimId}`;
     return await this.storeData(id, JSON.stringify(frequencia));
@@ -33,7 +44,7 @@ class HandleStorage {
   }
   async removeUser() {
     try {
-      await AsyncStorage.removeItem("user");
+      await AsyncStorage.clear();
       return true;
     } catch (err) {
       return false;

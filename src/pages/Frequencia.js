@@ -6,14 +6,13 @@ import HandleStorage from "../utils/AsyncStorage";
 import ApiHandler from "../utils/api";
 
 import Lottie from "lottie-react-native";
-import MyChart, { sanitizePercent, sanitizeAmount } from "./components/MyChart";
+import MyChart from "./components/MyChart";
+import BoletinsContext from '../context'
 export default function Frequencia() {
-  const [boletins, setBoletins] = useState([]);
-  const [user, setUser] = useState("");
   const [selectedBoletin, setSelectedBoletin] = useState({});
   const [frequencia, setFrequencia] = useState(null);
   const [percents, setPercents] = useState([0, 0, 0, 0]);
-  const [sumFaltas, setSumFaltas] = useState([0, 0, 0, 0, 0]);
+  const [sumFaltas, setSumFaltas] = useState([0, 0, 0, 0,0])
   const [isLoading, setIsLoading] = useState(true);
 
   const displayGraphs = useMemo(() => (isLoading ? "none" : "flex"), [
@@ -22,76 +21,75 @@ export default function Frequencia() {
   const displayLoading = useMemo(() => (isLoading ? "flex" : "none"), [
     isLoading
   ]);
+
+  function changeBoletin(boletin){
+    setSelectedBoletin(boletin)
+  }
+
   const Storage = new HandleStorage();
-  useEffect(() => {
-    async function loadBoletins() {
-      setIsLoading(true);
-      const { userToken } = await Storage.getUser();
-      const data = await Storage.getBoletins();
-      setBoletins(data);
-      setUser(userToken);
-      setIsLoading(false);
-    }
-    loadBoletins();
-  }, []);
+
   useEffect(() => {
     async function getFrequencia() {
+      const { userToken } = await Storage.getUser();
       const { boletimId, ano } = selectedBoletin;
       if (boletimId && ano) {
         setIsLoading(true);
-        const api = new ApiHandler(user);
+        const api = new ApiHandler(userToken);
         const response = await api.getFrequencia(boletimId, ano);
         setFrequencia(response);
         setIsLoading(false);
       }
     }
-    getFrequencia();
+    if (selectedBoletin) {
+      getFrequencia();
+    }
   }, [selectedBoletin]);
 
   useEffect(() => {
     function sanitizeData() {
-      setPercents(sanitizePercent(frequencia));
-      setSumFaltas(sanitizeAmount(frequencia));
+      const {percent, details}= frequencia
+      const {perc1,perc2,perc3,perc4} = percent
+      const {sum_p1,sum_p2,sum_p3,sum_p4,sum_total} = details
+      setPercents([perc1,perc2,perc3,perc4]);
+      setSumFaltas([sum_p1,sum_p2,sum_p3,sum_p4,sum_total]);
     }
     if (frequencia != null) {
       sanitizeData();
     }
   }, [frequencia]);
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <MyPicker
-        boletins={boletins}
-        changedState={setSelectedBoletin}
-        stateValue={selectedBoletin}
-      />
-      <ScrollView style={{ flex: 1 }}>
-        <View style={styles.container}>
-          <View style={{ display: displayGraphs }}>
-            <MyChart
-              title="Porcentagem de Faltas por Bimestre"
-              values={percents}
-              ySuffix="%"
-            />
-            <MyChart
-              title="Quantidade de Faltas por Bimestre"
-              values={sumFaltas}
+    <BoletinsContext.Provider value={{changeBoletin}}>
+      <SafeAreaView style={{ flex: 1 }}>
+        <MyPicker/>
+        <ScrollView style={{ flex: 1 }}>
+          <View style={styles.container}>
+            <View style={{ display: displayGraphs }}>
+              <MyChart
+                title="Porcentagem de Faltas por Bimestre"
+                values={percents}
+                ySuffix="%"
+              />
+              <MyChart
+                title="Quantidade de Faltas por Bimestre"
+                values={sumFaltas}
+              />
+            </View>
+            <Lottie
+              style={{
+                maxWidth: 300,
+                alignSelf: "center",
+                display: displayLoading
+              }}
+              resizeMode="contain"
+              autoSize
+              source={require("../utils/loading.json")}
+              autoPlay
+              loop
             />
           </View>
-          <Lottie
-            style={{
-              maxWidth: 300,
-              alignSelf: "center",
-              display: displayLoading
-            }}
-            resizeMode="contain"
-            autoSize
-            source={require("../utils/loading.json")}
-            autoPlay
-            loop
-          />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        </ScrollView>
+      </SafeAreaView>
+    </BoletinsContext.Provider>
   );
 }
 

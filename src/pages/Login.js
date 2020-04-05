@@ -19,7 +19,7 @@ import {
 
 import Icon from "react-native-vector-icons/FontAwesome";
 
-import api from "../utils/api";
+import ApiHandler from "../utils/api";
 import HandleStorage from "../utils/AsyncStorage";
 
 import Illustration from "./assets/illustration.png";
@@ -59,20 +59,14 @@ export default function Login({ navigation }) {
     setActivityIndicator("flex");
     setActivityText("none");
     if (email && senha) {
-      try {
-        const response = await api.post("/sessions", {
-          email,
-          senha
-        });
-        const saved = await Storage.setUser(response.data);
-        if (saved) {
-          setEmail("");
-          setSenha("");
-          navigation.navigate("Main");
-        }
-      } catch (error) {
+      const api = new ApiHandler("");
+      const authorized = await api.authUser(email, senha);
+      if (authorized) {
+        setEmail("");
+        setSenha("");
+        navigation.navigate("Main");
+      } else {
         setBorderColor("#c20a0a");
-
         setMessage("Usuário não encontrado. Verifique os dados inserídos");
         timer(fade, out);
       }

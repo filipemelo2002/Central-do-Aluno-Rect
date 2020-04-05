@@ -8,9 +8,7 @@ import Icon from "react-native-vector-icons/AntDesign";
 import Notas from "./Notas";
 import Frequencia from "./Frequencia";
 import Horario from "./Horario";
-import Estatisticas from "./Estatisticas";
 
-import ApiHandler from "../utils/api";
 import HandleStorage from "../utils/AsyncStorage";
 
 export default function Main({ navigation }) {
@@ -25,20 +23,13 @@ export default function Main({ navigation }) {
         style={{ marginRight: 15 }}
         onPress={async () => {
           navigation.navigate("Login");
-          await Storage().removeUser();
+          await Storage.removeUser();
         }}
       />
     )
   });
 
-  useEffect(() => {
-    async function loadBoletins() {
-      const { userToken } = await Storage.getUser();
-      const api = new ApiHandler(userToken);
-      await api.getBoletins();
-    }
-    loadBoletins();
-  }, []);
+
 
   return (
     <Tab.Navigator
@@ -85,21 +76,6 @@ export default function Main({ navigation }) {
         options={{
           tabBarIcon: ({ color }) => (
             <Icon color={color} name="calendar" size={26} />
-          )
-        }}
-      />
-      <Tab.Screen
-        component={Estatisticas}
-        name="Estatísticas"
-        options={{
-          tabBarLabel: ({ focused }) =>
-            focused ? (
-              <Text>Estatística</Text>
-            ) : (
-              <Text style={{ display: "none" }}></Text>
-            ),
-          tabBarIcon: ({ color }) => (
-            <Icon color={color} name="areachart" size={26} />
           )
         }}
       />

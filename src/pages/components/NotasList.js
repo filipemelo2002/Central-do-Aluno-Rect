@@ -7,6 +7,7 @@ import Item from "./item.js";
 export default function NotasList({ notas }) {
   return (
     <FlatList
+      showsVerticalScrollIndicator={false}
       data={notas.data}
       renderItem={({ item }) => (
         <Item

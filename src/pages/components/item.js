@@ -2,6 +2,9 @@ import React, { memo } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 // import { Container } from './styles';
+import { Dimensions } from "react-native";
+
+var width = Dimensions.get('window').width;
 function ItemList({
   materia,
   nota_p1,
@@ -133,7 +136,7 @@ const styles = StyleSheet.create({
     padding: 15,
     alignItems: "center",
     justifyContent: "center",
-    alignSelf: "stretch"
+    width: width - 25
   },
   headerTitle: {
     color: "#fff",
@@ -143,7 +146,7 @@ const styles = StyleSheet.create({
   },
   mainContent: {
     flex: 1,
-    alignSelf: "stretch",
+    width: width - 25,
     padding: 10,
     paddingHorizontal: 25
   },

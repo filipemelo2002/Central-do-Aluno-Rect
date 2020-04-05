@@ -11,6 +11,23 @@ class ApiHandler {
     this.Storage = new HandleStorage();
   }
 
+  async authUser(email, senha) {
+    try {
+      const response = await this.api.post("/sessions", {
+        email,
+        senha
+      });
+      return await this.Storage.setUser(response.data);
+    } catch (err) {
+      return false;
+    }
+  }
+  async getHorario() {
+    try {
+    } catch (err) {
+      return await this.Storage.getHorario();
+    }
+  }
   async getBoletins() {
     try {
       const response = await this.api.get("/boletins", {
@@ -55,7 +72,6 @@ class ApiHandler {
       await this.Storage.setFrequencia(boletimId, response.data);
       return response.data;
     } catch (err) {
-      console.log(err);
       return await this.Storage.getFrequencia(boletimId);
     }
   }

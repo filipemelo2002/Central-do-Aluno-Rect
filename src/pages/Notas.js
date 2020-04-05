@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { SafeAreaView, View } from "react-native";
 import Lottie from "lottie-react-native";
 
@@ -7,69 +7,73 @@ import MyPicker from "./components/MyPicker";
 import HandleStorage from "../utils/AsyncStorage";
 import ApiHandler from "../utils/api";
 
+import BoletinsContext from '../context'
 export default function Notas() {
-  const [boletins, setBoletins] = useState([]);
   const [notas, setNotas] = useState({});
   const [selectedBoletin, setSelectedBoletin] = useState({});
-  const [visible, setVisible] = useState("flex");
-  const [listLoaded, setListLoaded] = useState("none");
-  const [user, setUser] = useState("");
+  const [isLoading, setIsLoading] = useState(true)
+  
+  const displayList = useMemo(() => (isLoading ? "none" : "flex"), [
+    isLoading
+  ]);
+  const displayLoading = useMemo(() => (isLoading ? "flex" : "none"), [
+    isLoading
+  ]);
+
+
+
   const Storage = new HandleStorage();
-  useEffect(() => {
-    async function loadBoletins() {
-      const { userToken } = await Storage.getUser();
-      const data = await Storage.getBoletins();
-      setBoletins(data);
-      setUser(userToken);
-    }
-    loadBoletins();
-  }, []);
+  
+  
+  function changeBoletin(boletin){
+    setSelectedBoletin(boletin)
+  }
 
   useEffect(() => {
     async function getNotas() {
       const { boletimId, ano } = selectedBoletin;
-      const api = new ApiHandler(user);
-      const data = await api.getNotas(boletimId, ano);
-
-      setVisible("none");
-      setListLoaded("flex");
-      setNotas(data);
+      if(boletimId, ano){
+        setIsLoading(true)
+        const { userToken } = await Storage.getUser();
+        const api = new ApiHandler(userToken);
+        const response = await api.getNotas(boletimId, ano);
+        setIsLoading(false)
+        setNotas(response);
+      }
     }
-    if (user) {
-      setVisible("flex");
-      setListLoaded("none");
+    if(selectedBoletin){
       getNotas();
     }
+    
+  
   }, [selectedBoletin]);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <MyPicker
-        boletins={boletins}
-        changedState={setSelectedBoletin}
-        stateValue={selectedBoletin}
-      />
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Lottie
-          style={{
-            maxWidth: 300,
-            alignSelf: "center",
-            display: visible
-          }}
-          resizeMode="contain"
-          autoSize
-          source={require("../utils/loading.json")}
-          autoPlay
-          loop
-        />
-        <View
-          style={{
-            display: listLoaded
-          }}
-        >
-          <NotasList notas={notas} />
+    <BoletinsContext.Provider value={{changeBoletin}}>
+      <SafeAreaView style={{ flex: 1 }}>
+        <MyPicker/>
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+          <Lottie
+            style={{
+              maxWidth: 300,
+              alignSelf: "center",
+              display: displayLoading
+            }}
+            resizeMode="contain"
+            autoSize
+            source={require("../utils/loading.json")}
+            autoPlay
+            loop
+          />
+          <View
+            style={{
+              display: displayList
+            }}
+          >
+            <NotasList notas={notas} />
+          </View>
         </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </BoletinsContext.Provider>
   );
 }
