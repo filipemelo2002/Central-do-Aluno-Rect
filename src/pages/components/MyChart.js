@@ -25,7 +25,7 @@ export default function MyChart({
             }
           ]
         }}
-        width={screenWidth - 10}
+        width={screenWidth-10}
         height={220}
         yAxisSuffix={ySuffix}
         fromZero={true}
@@ -46,7 +46,7 @@ const chartConfig = {
   color: (opacity = 1) => `rgba(66, 72, 116, ${opacity})`,
   labelColor: (opacity = 1) => `rgba(0, 0, 0 , ${opacity})`,
   style: {
-    borderRadius: 5
+    borderRadius: 5,
   },
   propsForDots: {
     r: "6",
@@ -55,8 +55,9 @@ const chartConfig = {
 };
 const styles = StyleSheet.create({
   chartContainer: {
+    flex:1,
     backgroundColor: "#fff",
-    margin: 7,
+    marginTop:7,
     padding: 10,
     alignItems: "center",
     justifyContent: "center"
@@ -68,8 +69,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   chartStyles: {
-    marginVertical: 8,
-    marginHorizontal: 15,
     borderRadius: 5
   }
 });
