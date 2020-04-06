@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useContext } from "react";
 import { SafeAreaView, View } from "react-native";
 import Lottie from "lottie-react-native";
 
@@ -9,6 +9,8 @@ import ApiHandler from "../utils/api";
 
 import BoletinsContext from '../context'
 export default function Notas() {
+  const {boletins} = useContext(BoletinsContext)
+
   const [notas, setNotas] = useState({});
   const [selectedBoletin, setSelectedBoletin] = useState({});
   const [isLoading, setIsLoading] = useState(true)
@@ -51,7 +53,7 @@ export default function Notas() {
   return (
     <BoletinsContext.Provider value={{changeBoletin}}>
       <SafeAreaView style={{ flex: 1 }}>
-        <MyPicker/>
+        <MyPicker boletins={boletins}/>
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
           <Lottie
             style={{

@@ -24,11 +24,19 @@ class ApiHandler {
   }
   async getHorario() {
     try {
+      const response = await this.api.get("/horarios", {
+        headers: {
+          userToken: this.userToken
+        }
+      });
+      await this.Storage.setHorario(response.data)
+      return response.data
     } catch (err) {
       return await this.Storage.getHorario();
     }
   }
   async getBoletins() {
+    
     try {
       const response = await this.api.get("/boletins", {
         headers: {
@@ -38,6 +46,7 @@ class ApiHandler {
       await this.Storage.setBoletins(response.data);
       return response.data;
     } catch (err) {
+      
       return await this.Storage.getBoletins();
     }
   }

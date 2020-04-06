@@ -6,28 +6,15 @@ import ApiHandler from "../../utils/api";
 import HandleStorage from "../../utils/AsyncStorage";
 import BoletinContext from '../../context'
 
-export default function MyPicker() {
+export default function MyPicker({boletins}) {
   const {changeBoletin} = useContext(BoletinContext)
 
-  const Storage = new HandleStorage()
-  
-  const [boletins, setBoletins] = useState([])
   const [selected, setSelected] = useState({})
   function onChange(boletin){
     setSelected(boletin)
     changeBoletin(boletin)
   }
-  useEffect(() => {
-    async function loadBoletins() {
-      const { userToken } = await Storage.getUser();
-      const api = new ApiHandler(userToken);
-      const boletin = await api.getBoletins()
-      onChange(boletin[0])
-      setBoletins(boletin)
-    }
-    loadBoletins();
-  }, []);
-  
+ 
   return (
     <View style={styles.pickerRoot}>
       <Icon name="book" size={25} color="#149dff" />

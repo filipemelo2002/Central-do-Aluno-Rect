@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useContext } from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View, Text } from "react-native";
 
 import MyPicker from "./components/MyPicker";
@@ -9,6 +9,7 @@ import Lottie from "lottie-react-native";
 import MyChart from "./components/MyChart";
 import BoletinsContext from '../context'
 export default function Frequencia() {
+  const {boletins} = useContext(BoletinsContext)
   const [selectedBoletin, setSelectedBoletin] = useState({});
   const [frequencia, setFrequencia] = useState(null);
   const [percents, setPercents] = useState([0, 0, 0, 0]);
@@ -59,9 +60,9 @@ export default function Frequencia() {
   }, [frequencia]);
   return (
     <BoletinsContext.Provider value={{changeBoletin}}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <MyPicker/>
-        <ScrollView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, alignContent:"center", alignItems:"center" }}>
+        <MyPicker boletins={boletins}/>
+        <ScrollView contentContainerStyle={{flex:1,justifyContent:"center", alignItems:"center"}}>
           <View style={styles.container}>
             <View style={{ display: displayGraphs }}>
               <MyChart
@@ -71,13 +72,13 @@ export default function Frequencia() {
               />
               <MyChart
                 title="Quantidade de Faltas por Bimestre"
+                labels={["1º", "2º", "3º", "4º","Total"]}
                 values={sumFaltas}
               />
             </View>
             <Lottie
               style={{
                 maxWidth: 300,
-                alignSelf: "center",
                 display: displayLoading
               }}
               resizeMode="contain"
@@ -96,7 +97,6 @@ export default function Frequencia() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 5,
     alignItems: "center",
     paddingTop: 10,
     justifyContent: "center",
