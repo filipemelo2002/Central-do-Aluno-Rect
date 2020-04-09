@@ -34,13 +34,15 @@ class HandleStorage {
     return await this.storeData("boletins", JSON.stringify(boletins));
   }
   async getBoletins() {
-    return await this.getData("boletins");
+    const boletins = await this.getData("boletins");
+    return boletins ? boletins : [];
   }
   async setUser(user) {
     return await this.storeData("user", JSON.stringify(user));
   }
   async getUser() {
-    return await this.getData("user");
+    const user = await this.getData("user");
+    return user ? user : {};
   }
   async removeUser() {
     try {
@@ -63,7 +65,7 @@ class HandleStorage {
   async getData(key) {
     try {
       const value = await AsyncStorage.getItem(key);
-      if (value !== null) {
+      if (value) {
         return JSON.parse(value);
       }
       return false;
