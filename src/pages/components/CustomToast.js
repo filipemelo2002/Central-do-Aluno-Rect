@@ -5,11 +5,11 @@ const styles = StyleSheet.create({
   container: {
     padding: 15,
     position: "absolute",
-    bottom: 25,
     backgroundColor: "#00000095",
     borderRadius: 25,
     alignItems: "center",
-    marginHorizontal: 25
+    marginHorizontal: 25,
+    zIndex:100
   },
   text: {
     color: "#fff",

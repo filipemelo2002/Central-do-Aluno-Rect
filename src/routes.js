@@ -15,7 +15,7 @@ const Routes = () => (
         name="Login"
         component={Login}
         options={{
-          headerShown: false
+          headerShown: false,
         }}
       />
       <Stack.Screen
@@ -25,7 +25,7 @@ const Routes = () => (
           title: "Central do Aluno",
           headerStyle: {
             backgroundColor: "#149dff",
-            height: 90
+            height: 90,
           },
           headerLeft: null,
 
@@ -33,8 +33,8 @@ const Routes = () => (
           headerTintColor: "#fff",
           headerTitleStyle: {
             fontWeight: "bold",
-            fontSize: 25
-          }
+            fontSize: 25,
+          },
         }}
       />
     </Stack.Navigator>

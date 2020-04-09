@@ -10,11 +10,11 @@ import Horario from "./Horario";
 
 import HandleStorage from "../utils/AsyncStorage";
 import ApiHandler from "../utils/api";
-import BoletinsContext from '../context'
+import BoletinsContext from "../context";
 export default function Main({ navigation }) {
   const Storage = new HandleStorage();
-  const [boletins, setBoletins] = useState([])
-  const [horario,setHorario] = useState([])
+  const [boletins, setBoletins] = useState([]);
+  const [horario, setHorario] = useState([]);
   navigation.setOptions({
     headerRight: () => (
       <Icon
@@ -23,28 +23,27 @@ export default function Main({ navigation }) {
         color="#fff"
         style={{ marginRight: 15 }}
         onPress={async () => {
-          navigation.navigate("Login");
           await Storage.removeUser();
+          navigation.navigate("Login");
         }}
       />
-    )
+    ),
   });
 
-  useEffect(()=>{
-    async function fetchBoletins(){
-      const {userToken} = await Storage.getUser()
-      const api = new ApiHandler(userToken)
-      const response = await api.getBoletins(userToken)
-      setBoletins(response)
-      const horarioRes = await api.getHorario(userToken)
-      setHorario(horarioRes)
-      console.log(horarioRes)
+  useEffect(() => {
+    async function fetchBoletins() {
+      const { userToken } = await Storage.getUser();
+      const api = new ApiHandler(userToken);
+      const response = await api.getBoletins(userToken);
+      setBoletins(response);
+      const horarioRes = await api.getHorario(userToken);
+      setHorario(horarioRes);
     }
-    fetchBoletins()
-  }, [])
+    fetchBoletins();
+  }, []);
 
   return (
-    <BoletinsContext.Provider value={{boletins, horario}}>
+    <BoletinsContext.Provider value={{ boletins, horario }}>
       <Tab.Navigator
         barStyle={{ backgroundColor: "#fff" }}
         tabBarPosition="bottom"
@@ -52,17 +51,17 @@ export default function Main({ navigation }) {
           activeTintColor: "#008df1",
           inactiveTintColor: "#7f7f7f",
           indicatorStyle: {
-            height: 0
+            height: 0,
           },
           labelStyle: {
-            display: "none"
+            display: "none",
           },
           style: {
             borderTopWidth: 0.5,
             borderTopColor: "#008df1",
-            padding: 10
+            padding: 10,
           },
-          showIcon: true
+          showIcon: true,
         }}
       >
         <Tab.Screen
@@ -71,7 +70,7 @@ export default function Main({ navigation }) {
           options={{
             tabBarIcon: ({ color }) => (
               <Icon color={color} name="table" size={23} />
-            )
+            ),
           }}
         />
         <Tab.Screen
@@ -80,7 +79,7 @@ export default function Main({ navigation }) {
           options={{
             tabBarIcon: ({ color }) => (
               <Icon color={color} name="user" size={26} />
-            )
+            ),
           }}
         />
         <Tab.Screen
@@ -89,7 +88,7 @@ export default function Main({ navigation }) {
           options={{
             tabBarIcon: ({ color }) => (
               <Icon color={color} name="calendar" size={26} />
-            )
+            ),
           }}
         />
       </Tab.Navigator>

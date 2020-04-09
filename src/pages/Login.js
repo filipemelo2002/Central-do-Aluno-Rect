@@ -64,7 +64,7 @@ export default function Login({ navigation }) {
       if (authorized) {
         setEmail("");
         setSenha("");
-        navigation.navigate("Main");
+        navigation.replace("Main");
       } else {
         setBorderColor("#c20a0a");
         setMessage("Usuário não encontrado. Verifique os dados inserídos");
@@ -90,6 +90,7 @@ export default function Login({ navigation }) {
   }, []);
   return (
     <SafeAreaView style={styles.root}>
+      <CustomToast message={message} animation={animatedValue} />
       <KeyboardAvoidingView style={styles.content} behavior="padding">
         <Text style={styles.title}>Login</Text>
         <Image
@@ -157,7 +158,6 @@ export default function Login({ navigation }) {
             </View>
           </TouchableOpacity>
         </View>
-        <CustomToast message={message} animation={animatedValue} />
       </KeyboardAvoidingView>
     </SafeAreaView>
   );

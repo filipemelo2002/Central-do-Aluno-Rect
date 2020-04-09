@@ -60,13 +60,26 @@ export default function Frequencia() {
   }, [frequencia]);
   return (
     <BoletinsContext.Provider value={{changeBoletin}}>
-      <SafeAreaView style={{ flex: 1, alignContent:"center", alignItems:"center" }}>
+      <SafeAreaView style={{ flex: 1, justifyContent:"center", alignItems:"center" }}>
         <MyPicker boletins={boletins}/>
-        <ScrollView contentContainerStyle={{flex:1,justifyContent:"center", alignItems:"center"}}>
+        <View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
+          <Lottie
+            style={{
+              maxWidth: 300,
+              display: displayLoading, 
+              alignSelf:"center",
+            }}
+            resizeMode="contain"
+            autoSize
+            source={require("../utils/loading.json")}
+            autoPlay
+            loop
+          />
+        <ScrollView style={{flex:1, display: displayGraphs }} showsVerticalScrollIndicator={false} >
           <View style={styles.container}>
-            <View style={{ display: displayGraphs }}>
+            <View style={{ flex:1}}>
               <MyChart
-                title="Porcentagem de Faltas por Bimestre"
+                title="Percentual de Faltas por Bimestre"
                 values={percents}
                 ySuffix="%"
               />
@@ -76,19 +89,9 @@ export default function Frequencia() {
                 values={sumFaltas}
               />
             </View>
-            <Lottie
-              style={{
-                maxWidth: 300,
-                display: displayLoading
-              }}
-              resizeMode="contain"
-              autoSize
-              source={require("../utils/loading.json")}
-              autoPlay
-              loop
-            />
           </View>
         </ScrollView>
+        </View>
       </SafeAreaView>
     </BoletinsContext.Provider>
   );

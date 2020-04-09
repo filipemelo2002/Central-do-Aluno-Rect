@@ -9,13 +9,13 @@
       "android",
       "web"
     ],
-    "version": "1.0.0",
+    "version": "0.2.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#008df1"
+      "backgroundColor": "#fff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -27,8 +27,8 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.mycompany.centraldoaluno",
-      "versionCode": 1
+      "package": "com.feathercompany.www",
+      "versionCode": 35
     }
   }
 }
