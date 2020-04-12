@@ -7,59 +7,57 @@ import MyPicker from "./components/MyPicker";
 import HandleStorage from "../utils/AsyncStorage";
 import ApiHandler from "../utils/api";
 
-import BoletinsContext from '../context'
+import BoletinsContext from "../context";
+
+import { BannerAd } from "../utils/AdsHandler";
 export default function Notas() {
-  const {boletins} = useContext(BoletinsContext)
+  const { boletins } = useContext(BoletinsContext);
 
   const [notas, setNotas] = useState({});
   const [selectedBoletin, setSelectedBoletin] = useState({});
-  const [isLoading, setIsLoading] = useState(true)
-  
-  const displayList = useMemo(() => (isLoading ? "none" : "flex"), [
-    isLoading
-  ]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const displayList = useMemo(() => (isLoading ? "none" : "flex"), [isLoading]);
   const displayLoading = useMemo(() => (isLoading ? "flex" : "none"), [
-    isLoading
+    isLoading,
   ]);
-
-
 
   const Storage = new HandleStorage();
-  
-  
-  function changeBoletin(boletin){
-    setSelectedBoletin(boletin)
+
+  function changeBoletin(boletin) {
+    setSelectedBoletin(boletin);
   }
 
   useEffect(() => {
     async function getNotas() {
       const { boletimId, ano } = selectedBoletin;
-      if(boletimId, ano){
-        setIsLoading(true)
+      if ((boletimId, ano)) {
+        setIsLoading(true);
         const { userToken } = await Storage.getUser();
         const api = new ApiHandler(userToken);
         const response = await api.getNotas(boletimId, ano);
-        setIsLoading(false)
+        setIsLoading(false);
         setNotas(response);
       }
     }
-    if(selectedBoletin){
+    if (selectedBoletin) {
       getNotas();
     }
-    
-  
   }, [selectedBoletin]);
 
   return (
-    <BoletinsContext.Provider value={{changeBoletin}}>
+    <BoletinsContext.Provider value={{ changeBoletin }}>
       <SafeAreaView style={{ flex: 1 }}>
-        <MyPicker boletins={boletins}/>
-        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <MyPicker boletins={boletins} />
+        <BannerAd />
+        <View
+          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+        >
           <Lottie
             style={{
               maxWidth: 300,
               alignSelf: "center",
-              display: displayLoading
+              display: displayLoading,
             }}
             resizeMode="contain"
             autoSize
@@ -69,7 +67,7 @@ export default function Notas() {
           />
           <View
             style={{
-              display: displayList
+              display: displayList,
             }}
           >
             <NotasList notas={notas} />

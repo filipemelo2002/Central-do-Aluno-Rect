@@ -18,11 +18,17 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-4776387538701328~5824324554"
+      }
     },
     "android": {
       "package": "com.feathercompany.www",
-      "versionCode": 36
+      "versionCode": 36,
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-4776387538701328~5824324554"
+      }
     }
   }
 }

@@ -11,6 +11,8 @@ import Horario from "./Horario";
 import HandleStorage from "../utils/AsyncStorage";
 import ApiHandler from "../utils/api";
 import BoletinsContext from "../context";
+
+import { Interstitial } from "../utils/AdsHandler";
 export default function Main({ navigation }) {
   const Storage = new HandleStorage();
   const [boletins, setBoletins] = useState([]);
@@ -39,6 +41,7 @@ export default function Main({ navigation }) {
       const horarioRes = await api.getHorario(userToken);
       setHorario(horarioRes);
     }
+    Interstitial();
     fetchBoletins();
   }, []);
 
