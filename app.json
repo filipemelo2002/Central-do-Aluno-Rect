@@ -25,7 +25,7 @@
     },
     "android": {
       "package": "com.feathercompany.www",
-      "versionCode": 36,
+      "versionCode": 37,
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-4776387538701328~5824324554"
       }
