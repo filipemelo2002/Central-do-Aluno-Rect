@@ -10,11 +10,11 @@ import {
   Text,
   SafeAreaView,
   Linking,
-  ActivityIndicator
+  ActivityIndicator,
 } from "react-native";
 import {
   widthPercentageToDP as wp,
-  heightPercentageToDP as hp
+  heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -27,7 +27,7 @@ import Illustration from "./assets/illustration.png";
 import CustomToast, {
   timer,
   fadeTrigger,
-  fadeOut
+  fadeOut,
 } from "./components/CustomToast";
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
@@ -82,7 +82,7 @@ export default function Login({ navigation }) {
   useEffect(() => {
     async function verifyUser() {
       const user = await Storage.getUser();
-      if (user) {
+      if (user.userToken) {
         navigation.navigate("Main");
       }
     }
@@ -105,7 +105,7 @@ export default function Login({ navigation }) {
               placeholder="Usuário"
               style={styles.input}
               onKeyPress={() => setBorderColor("#fff")}
-              onChangeText={value => setEmail(value)}
+              onChangeText={(value) => setEmail(value)}
               value={email}
             />
           </View>
@@ -120,7 +120,7 @@ export default function Login({ navigation }) {
               placeholder="Senha"
               style={styles.input}
               secureTextEntry={hiddenPass}
-              onChangeText={value => setSenha(value)}
+              onChangeText={(value) => setSenha(value)}
               value={senha}
             />
           </View>
@@ -149,7 +149,7 @@ export default function Login({ navigation }) {
                 backgroundColor: "transparent",
                 borderColor: "#149dff",
                 borderStyle: "solid",
-                borderWidth: 2
+                borderWidth: 2,
               }}
             >
               <Text style={{ ...styles.btnText, color: "#149dff" }}>
@@ -168,26 +168,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#f2f2f2",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   content: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   title: {
     bottom: 10,
     marginBottom: 20,
     fontSize: 40,
     fontWeight: "700",
-    color: "#01497d"
+    color: "#01497d",
   },
   image: {
     width: wp("70%"),
-    height: hp("20%")
+    height: hp("20%"),
   },
   form: {
-    marginTop: 25
+    marginTop: 25,
   },
   entryGroup: {
     flexDirection: "row",
@@ -199,30 +199,30 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 1
+      height: 1,
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 3,
     borderStyle: "solid",
-    borderWidth: 2
+    borderWidth: 2,
   },
   input: {
     width: wp("70%"),
     fontSize: 16,
-    left: 10
+    left: 10,
   },
   btnFrame: {
     marginTop: 15,
     backgroundColor: "#149dff",
     padding: 15,
     borderRadius: 7,
-    alignItems: "center"
+    alignItems: "center",
   },
   btnText: {
     color: "#fff",
     fontWeight: "700",
     textTransform: "uppercase",
-    fontSize: 17
-  }
+    fontSize: 17,
+  },
 });
