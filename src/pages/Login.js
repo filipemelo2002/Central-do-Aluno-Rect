@@ -82,7 +82,7 @@ export default function Login({ navigation }) {
   useEffect(() => {
     async function verifyUser() {
       const user = await Storage.getUser();
-      if (user.userToken) {
+      if (user) {
         navigation.navigate("Main");
       }
     }

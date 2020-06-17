@@ -42,7 +42,7 @@ class HandleStorage {
   }
   async getUser() {
     const user = await this.getData("user");
-    return user ? user : {};
+    return user;
   }
   async removeUser() {
     try {
